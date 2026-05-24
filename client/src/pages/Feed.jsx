@@ -20,7 +20,9 @@ const Feed = () => {
   // FETCH POSTS
   const fetchPosts = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/posts");
+      const res = await axios.get(
+        "https://devconnect-pxxq.onrender.com/api/posts",
+      );
 
       setPosts(res.data);
 
@@ -37,7 +39,7 @@ const Feed = () => {
   const fetchComments = async (postId) => {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/comments/${postId}`,
+        `https://devconnect-pxxq.onrender.com/api/comments/${postId}`,
       );
 
       setComments((prev) => ({
@@ -103,7 +105,10 @@ const Feed = () => {
                   content: text,
                 };
 
-                await axios.post("http://localhost:5000/api/posts", newPost);
+                await axios.post(
+                  "https://devconnect-pxxq.onrender.com/api/posts",
+                  newPost,
+                );
 
                 setText("");
 
@@ -142,7 +147,7 @@ const Feed = () => {
                   onClick={async () => {
                     try {
                       await axios.put(
-                        `http://localhost:5000/api/posts/${post._id}/like`,
+                        `https://devconnect-pxxq.onrender.com/api/posts/${post._id}/like`,
                       );
 
                       fetchPosts();
@@ -170,11 +175,14 @@ const Feed = () => {
                   onClick={async () => {
                     if(!commentText.trim()) return;
                     try {
-                      await axios.post("http://localhost:5000/api/comments", {
-                        postId: post._id,
-                        author: user.username,
-                        text: commentText,
-                      });
+                      await axios.post(
+                        "https://devconnect-pxxq.onrender.com/api/comments",
+                        {
+                          postId: post._id,
+                          author: user.username,
+                          text: commentText,
+                        },
+                      );
 
                       setCommentText("");
 
@@ -208,7 +216,7 @@ const Feed = () => {
                 onClick={async () => {
                   try {
                     await axios.delete(
-                      `http://localhost:5000/api/posts/${post._id}`,
+                      `https://devconnect-pxxq.onrender.com/api/posts/${post._id}`,
                     );
 
                     fetchPosts();

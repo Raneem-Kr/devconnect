@@ -17,7 +17,9 @@ const Profile = () => {
   // FETCH USER POSTS
   const fetchUserPosts = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/posts");
+      const res = await axios.get(
+        "https://devconnect-pxxq.onrender.com/api/posts",
+      );
 
       const userPosts = res.data.filter(
         (post) => post.author === user?.username,
@@ -96,7 +98,7 @@ const Profile = () => {
                 onClick={async () => {
                   try {
                     const res = await axios.put(
-                      `http://localhost:5000/api/auth/profile/${user._id}`,
+                      `https://devconnect-pxxq.onrender.com/api/auth/profile/${user._id}`,
                       {
                         username,
                         bio,
